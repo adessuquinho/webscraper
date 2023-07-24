@@ -1,0 +1,26 @@
+{
+    "ignore_texts": [
+      "Encontre matérias e conteúdos da Gazeta do Povo",
+      "texto2",
+      "texto3"
+    ],
+    "ignore_classes": [
+      "explain",
+      "c-title-input",
+      "title",
+      "loader-text",
+      "link-minha-gazeta-home",
+      "information-minha-gazeta",
+      "loader-notifications-message",
+      "message-minha-gazeta",
+      "text char-counter",
+      "c-search-info",
+      "content-unordered-list",
+      "content-publication-data__from",
+      "title-logo",
+      "box-home",
+      "hat",
+      "header-coluna__info-description"
+    ]
+  }
+  

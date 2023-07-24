@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Web Scraper</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Web Scraper</h1>
+        <form id="my-form">
+            <label for="url">Enter a URL:</label>
+            <input type="text" id="url" name="url" required>
+            <input type="submit" value="Scrape">
+        </form>
+        <div id="result"></div>
+        <div id="error"></div>
+    </div>
+
+    <script>
+        // Dados JSON incorporados diretamente no JavaScript
+        const jsonData = {
+            "ignore_texts": [
+                "Encontre matérias e conteúdos da Gazeta do Povo",
+                "texto2",
+                "texto3"
+            ],
+            "ignore_classes": [
+                "explain",
+                "c-title-input",
+                "title",
+                "loader-text",
+                "link-minha-gazeta-home",
+                "information-minha-gazeta",
+                "loader-notifications-message",
+                "message-minha-gazeta",
+                "text char-counter",
+                "c-search-info",
+                "content-unordered-list",
+                "content-publication-data__from",
+                "title-logo",
+                "box-home",
+                "hat",
+                "header-coluna__info-description"
+            ]
+        };
+
+        // Função para lidar com a resposta da solicitação
+        function handleResponse(result) {
+            // Extrai os parágrafos da resposta
+            const paragraphs = result.paragraphs;
+
+            // Atualiza o elemento de exibição com os parágrafos
+            const resultElement = document.getElementById('result');
+            resultElement.innerHTML = paragraphs.join('');
+
+            // Exibe o título da página
+            const pageTitle = result.page_title;
+            document.title = pageTitle;
+
+            // Rola a página para exibir o resultado
+            resultElement.scrollIntoView();
+        }
+
+        // Função para lidar com erros de solicitação
+        function handleError(error) {
+            // Exibe uma mensagem de erro
+            const errorElement = document.getElementById('error');
+            errorElement.textContent = error;
+        }
+
+        // Função para lidar com o envio do formulário
+        function handleSubmit(event) {
+            event.preventDefault();
+
+            // Chama a função handleResponse com os dados JSON incorporados
+            handleResponse(jsonData);
+        }
+
+        // Evento de escuta para enviar o formulário
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('my-form');
+            form.addEventListener('submit', handleSubmit);
+        });
+    </script>
+</body>
+</html>
